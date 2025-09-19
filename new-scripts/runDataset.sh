@@ -22,7 +22,7 @@ scoresFolderPath=$rootPath/scores-estimated-gt/$modelCond
 
 geneTreeLabel=estimatedgenetre
 speciesTreeLabel=s_tree.trees
-consTreeLabel=cons-phylip.tre
+consTreeLabel=cons.greedy.tree
 geneTreeLabelCleaned=gt-cleaned-resolved
 speciesTreeLabelCleaned=sp-cleaned
 
@@ -65,8 +65,8 @@ runOne() {
 
 }
 
-if [ "$#" -gt 2 ]; then
-    for (( i=3; i< $#; i++ )); do
+if [ "$#" -gt 4 ]; then
+    for (( i=5; i< $#; i++ )); do
         runOne ${!i}
     done
 else
