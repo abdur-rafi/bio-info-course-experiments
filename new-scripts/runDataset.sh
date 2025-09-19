@@ -24,6 +24,7 @@ geneTreeLabel=estimatedgenetre
 speciesTreeLabel=s_tree.trees
 consTreeLabel=cons.greedy.tree
 geneTreeLabelCleaned=gt-cleaned-resolved
+# geneTreeLabelCleaned=gt-resolved-cleaned
 speciesTreeLabelCleaned=sp-cleaned
 
 
@@ -59,9 +60,9 @@ runOne() {
 
     java -jar "$jarPath" $gtPath $consPath $outPath $nonQuartType
 
-    python ./rfScoreCalculator/getFpFn.py -t $spPath -e $outPath >> $scoresFolderPath/$filePrefix-score.txt
+    python3 ./rfScoreCalculator/getFpFn.py -t $spPath -e $outPath >> $scoresFolderPath/$filePrefix-score.txt
 
-    python ./scripts/rfAverager.py < $scoresFolderPath/$filePrefix-score.txt > $scoresFolderPath/avg-$filePrefix-score.txt
+    python3 ./scripts/rfAverager.py < $scoresFolderPath/$filePrefix-score.txt > $scoresFolderPath/avg-$filePrefix-score.txt
 
 }
 
