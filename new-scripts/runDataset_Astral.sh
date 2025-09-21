@@ -6,6 +6,7 @@ filePrefix=$3
 jarPath=$4
 ts=$5
 
+
 if [ -z "$rootPath" ] || [ -z "$modelCond" ] || [ -z "$filePrefix" ] || [ -z "$jarPath" ]; then
     echo "Usage: ./runAstral2DatasetsEst.sh <rootPath> <modelCond> <filePrefix> <jarPath> [<file1> <file2> ...]"
     exit 1
@@ -61,7 +62,7 @@ runOne() {
 
     # /usr/bin/env /usr/lib/jvm/java-17-openjdk-amd64/bin/java -XX:+ShowCodeDetailsInExceptionMessages -cp /home/abdur-rafi/.config/Code/User/workspaceStorage/da91ba3e148e5727246c82da7f9911d2/redhat.java/jdt_ws/E-WQFM_731a4073/bin src.Main $gtPath $consPath $outPath $nonQuartType
 
-    java -jar "$jarPath" $gtPath $consPath $outPath $nonQuartType & PID=$!
+    java -jar "$jarPath" -i $gtPath -o $outPath & PID=$!
 
     psrecord $PID --interval 2 --log memoryLogs/$ts/$modelCond.$file.txt --plot memoryLogs/$ts/$modelCond.$file.png
     
@@ -74,7 +75,7 @@ runOne() {
 }
 
 if [ "$#" -gt 5 ]; then
-    for (( i=6; i<= $#; i++ )); do
+    for (( i=6; i <= $#; i++ )); do
         runOne ${!i}
     done
 else
